@@ -1,44 +1,9 @@
-// /**
-//  * @license
-//  * Copyright 2019 Google LLC. All Rights Reserved.
-//  * SPDX-License-Identifier: Apache-2.0
-//  */
-// import { Loader } from "@googlemaps/js-api-loader";
-
-// // Note: This example requires that you consent to location sharing when
-// // prompted by your browser. If you see the error "The Geolocation service
-// // failed.", it means you probably did not give permission for the browser to
-// // locate you.
-
-// const loader = new Loader({
-//   apiKey: "AIzaSyDKqJC4dkD_xkdDVOpI38m3nJr3uuRXq7Q", 
-//   version: "weekly",
-// })
-// console.log("global loader ");
-
 let map: google.maps.Map, infoWindow: google.maps.InfoWindow;
-// const center = { lat: 41.90476224706472, lng: 12.49822074385094 };
-// const zoom = 14;
-// document.addEventListener("DOMContentLoaded", () => {
-//   console.log("in the dom function");
-//   const wrapper = document.getElementById("wrapper") as HTMLButtonElement;
-
-//   wrapper.addEventListener("click", () => {
-//     wrapper.remove();
-
-//     loader.load().then(() => {
-//       map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-//         center,
-//         zoom,
-//       });
-//     });
-//   });
-// });
 
 
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
-  await navigator.geolocation.getCurrentPosition((position: GeolocationPosition) => {
+  navigator.geolocation.getCurrentPosition((position: GeolocationPosition) => {
     map = new Map(document.getElementById("map") as HTMLElement, {
       center: {lat: position.coords.latitude, lng: position.coords.longitude},
       zoom: 15,
