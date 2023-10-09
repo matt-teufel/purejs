@@ -11,9 +11,8 @@
 let map: google.maps.Map, infoWindow: google.maps.InfoWindow;
 
 function initMap(): void {
-  if(navigator.geolocation){
     let userLocation = navigator.geolocation
-  .getCurrentPosition((position: GeolocationPosition) => {
+    .getCurrentPosition((position: GeolocationPosition) => {
      const pos = {
        lat: position.coords.latitude,
        lng: position.coords.longitude,
@@ -38,7 +37,6 @@ function initMap(): void {
 
 
      });
-  }
 }
 
 function handleLocationError(
