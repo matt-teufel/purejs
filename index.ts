@@ -1,6 +1,5 @@
 let map: google.maps.Map, infoWindow: google.maps.InfoWindow;
 
-console.log("key: ", import.meta.env.GOOGLE_MAPS_API_KEY);
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
   navigator.geolocation.getCurrentPosition((position: GeolocationPosition) => {
