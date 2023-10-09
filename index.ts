@@ -58,8 +58,7 @@ declare global {
 window.initMap = initMap;
 export {};
 
-initMap();
-
+setTimeout(()=>{initMap()}, 100);
 
 //     // locationButton.addEventListener("click", () => {
 //     //   // Try HTML5 geolocation.

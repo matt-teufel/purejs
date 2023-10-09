@@ -12,5 +12,6 @@
     ],
     "moduleResolution": "Node",
     "jsx": "preserve"
-  }
+  }, 
+  "include":["env.d.ts", "*.ts"],
 }
