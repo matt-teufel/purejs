@@ -28,10 +28,15 @@ function initMap(): void {
   
     const welcomeButton = document.createElement("button");
   
-    welcomeButton.textContent = "Pan to Current Location";
+    welcomeButton.textContent = "click to launch game";
     welcomeButton.classList.add("custom-map-control-button");
   
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(welcomeButton);
+    welcomeButton.addEventListener("click", () => {
+      window.location.href = "./basketball/index.html";
+     });
+
+
      });
   }
 }
