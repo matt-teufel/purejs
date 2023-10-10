@@ -1,7 +1,11 @@
 let map, infoWindow;
+let beachflag1, beachflag2;
 
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
+  const { AdvancedMarkerElement } = await google.maps.importLibrary(
+    "marker",
+  );
   navigator.geolocation.getCurrentPosition((position) => {
     map = new Map(document.getElementById("map"), {
       center: {lat: position.coords.latitude, lng: position.coords.longitude},
@@ -18,22 +22,36 @@ async function initMap() {
   
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(welcomeButton);
     welcomeButton.addEventListener("click", () => {
-      window.location.href = "./basketball/index.html";
+      window.location.href = "https://launchar.app/launch/matthews-project?url=https%3A%2F%2Fmatt-teufel.github.io%2Fpurejs%2Fbasketball%2Findex.html";
      });
-  })
+     const bf1Image = document.createElement("img");
 
-    // navigator.geolocation
-    // .getCurrentPosition((position: GeolocationPosition) => {
-    //  const pos = {
-    //    lat: position.coords.latitude,
-    //    lng: position.coords.longitude,
-    //  }
-    //  map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-    //   center: pos,
-    //   zoom: 15,
-    //   mapId: "c2191a630a735aa3", 
-    //   disableDefaultUI: true,
-    // });
+     bf1Image.src =
+       "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+   
+     beachflag1 = new AdvancedMarkerElement({
+       map,
+       position: { lat: 35.142591, lng: -120.639300 },
+       content: bf1Image,
+       title: "A marker using a custom PNG Image",
+       id: "beach-flag-marker",
+     });
+
+     const bf2Image = document.createElement("img");
+
+     bf2Image.src =
+       "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+
+     beachflag2 = new AdvancedMarkerElement({
+      map,
+      position: { lat: 35.141305, lng: -120.637137 },
+      content: bf2Image,
+      title: "A marker using a custom PNG Image",
+      id: "beach-flag-marker2",
+    });
+
+
+  })
 }
 
 function handleLocationError(
@@ -50,43 +68,32 @@ function handleLocationError(
   infoWindow.open(map);
 }
 
-// declare global {
-//   interface Window {
-//     initMap: () => void;
-//   }
-// }
 window.initMap = initMap;
 export {};
 
 setTimeout(()=>{initMap()}, 100);
 
-//     // locationButton.addEventListener("click", () => {
-//     //   // Try HTML5 geolocation.
-//     //   if (navigator.geolocation) {
-//     //     navigator.geolocation.getCurrentPosition(
-//     //       (position: GeolocationPosition) => {
-//     //         const pos = {
-//     //           lat: position.coords.latitude,
-//     //           lng: position.coords.longitude,
-//     //         };
-  
-//     //         infoWindow.setPosition(pos);
-//     //         infoWindow.setContent("Location found.");
-//     //         infoWindow.open(map);
-//     //         map.setCenter(pos);
-//     //       },
-//     //       () => {
-//     //         handleLocationError(true, infoWindow, map.getCenter()!);
-//     //       }
-//     //     );
-//     //   } else {
-//     //     // Browser doesn't support Geolocation
-//     //     handleLocationError(false, infoWindow, map.getCenter()!);
-//     //   }
-//     // });
+setInterval(()=> {
+  navigator.geolocation.getCurrentPosition((position) => {
+    const userLat = position.coords.latitude;
+    const userLon = position.coords.longitude;
+    const userLocation = new google.maps.LatLng(userLat, userLon);
+    if(position && beachflag1 && beachflag2) {
+      const distance = calculateDistance(position.coords.latitude, position.coords.longitude, beachflag1.position.lat, beachflag1.position.lng);
+      console.log("distanc 1: ", distance);
+      const distance2 = calculateDistance(position.coords.latitude, position.coords.longitude, beachflag2.position.lat, beachflag2.position.lng); 
+      console.log("distance 2: ", distance2);
+      if(distance < 10) { 
+        console.log("we launching the game");
+      }
+    }
+  })
+}, 5000);
 
 
-function calculateDistance(lat1, lon1, lat2, lon2) {
+
+
+function calculateDistance(lat1, lon1, lat2, lon2) {  
   const R = 6371; // Radius of the Earth in kilometers
   const dLat = (lat2 - lat1) * (Math.PI / 180);
   const dLon = (lon2 - lon1) * (Math.PI / 180);
@@ -115,3 +122,31 @@ function checkDistanceToLandmark(landmarkLat, landmarkLon) {
     console.error("Error getting user location:", error);
   });
 }
+
+
+
+
+//     // locationButton.addEventListener("click", () => {
+//     //   // Try HTML5 geolocation.
+//     //   if (navigator.geolocation) {
+//     //     navigator.geolocation.getCurrentPosition(
+//     //       (position: GeolocationPosition) => {
+//     //         const pos = {
+//     //           lat: position.coords.latitude,
+//     //           lng: position.coords.longitude,
+//     //         };
+  
+//     //         infoWindow.setPosition(pos);
+//     //         infoWindow.setContent("Location found.");
+//     //         infoWindow.open(map);
+//     //         map.setCenter(pos);
+//     //       },
+//     //       () => {
+//     //         handleLocationError(true, infoWindow, map.getCenter()!);
+//     //       }
+//     //     );
+//     //   } else {
+//     //     // Browser doesn't support Geolocation
+//     //     handleLocationError(false, infoWindow, map.getCenter()!);
+//     //   }
+//     // });
