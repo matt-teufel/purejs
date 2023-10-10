@@ -171,3 +171,6 @@ function render(timestamp, frame) {
 
   renderer.render(scene, camera);
 }
+
+init()
+animate()
