@@ -17,16 +17,19 @@ let planeFound = false;
 let flowersGltf;
 
 // check for webxr session support
-if ("xr" in navigator) {
-  navigator.xr.isSessionSupported("immersive-ar").then((supported) => {
-    if (supported) {
-      //hide "ar-not-supported"
-      document.getElementById("ar-not-supported").style.display = "none";
-      init();
-      animate();
-    }
-  });
-}
+// if ("xr" in navigator) {
+//   navigator.xr.isSessionSupported("immersive-ar").then((supported) => {
+//     if (supported) {
+//       //hide "ar-not-supported"
+//       document.getElementById("ar-not-supported").style.display = "none";
+//       init();
+//       animate();
+//     }
+//   });
+// }
+document.getElementById("ar-not-supported").style.display = "none";
+init();
+animate();
 
 function sessionStart() {
   planeFound = false;
@@ -171,6 +174,3 @@ function render(timestamp, frame) {
 
   renderer.render(scene, camera);
 }
-
-init()
-animate()
