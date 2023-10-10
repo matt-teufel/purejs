@@ -22,8 +22,9 @@ async function initMap() {
   
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(welcomeButton);
     welcomeButton.addEventListener("click", () => {
-      window.location.href = "https://launchar.app/launch/matthews-project?url=https%3A%2F%2Fmatt-teufel.github.io%2Fpurejs%2Fbasketball%2Findex.html";
-     });
+      // window.location.href = "https://launchar.app/launch/matthews-project?url=https%3A%2F%2Fmatt-teufel.github.io%2Fpurejs%2Fbasketball%2Findex.html";
+      window.location.href = "./flowers/index.html";
+    });
      const bf1Image = document.createElement("img");
 
      bf1Image.src =
