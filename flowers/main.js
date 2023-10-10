@@ -109,7 +109,7 @@ function init() {
   //load flowers.glb
   const loader = new GLTFLoader();
 
-  loader.load("flowers.glb", (gltf) => {
+  loader.load("./public/flowers.glb", (gltf) => {
     flowersGltf = gltf.scene;
   });
 
