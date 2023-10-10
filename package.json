@@ -35,6 +35,8 @@
     "@googlemaps/js-api-loader": "1.16.2",
     "@types/google.maps": "^3.53.5",
     "typescript": "^5.2.2",
-    "vite": "^4.4.9"
+    "vite": "^4.4.9",
+    "three": "^0.153.0",
+    "qrcode": "^1.5.3"
   }
 }
