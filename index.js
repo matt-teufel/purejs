@@ -1,9 +1,9 @@
-let map: google.maps.Map, infoWindow: google.maps.InfoWindow;
+let map, infoWindow;
 
 async function initMap() {
-  const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
-  navigator.geolocation.getCurrentPosition((position: GeolocationPosition) => {
-    map = new Map(document.getElementById("map") as HTMLElement, {
+  const { Map } = await google.maps.importLibrary("maps");
+  navigator.geolocation.getCurrentPosition((position) => {
+    map = new Map(document.getElementById("map"), {
       center: {lat: position.coords.latitude, lng: position.coords.longitude},
       zoom: 15,
       mapId: "c2191a630a735aa3", 
@@ -37,9 +37,9 @@ async function initMap() {
 }
 
 function handleLocationError(
-  browserHasGeolocation: boolean,
-  infoWindow: google.maps.InfoWindow,
-  pos: google.maps.LatLng
+  browserHasGeolocation,
+  infoWindow,
+  pos
 ) {
   infoWindow.setPosition(pos);
   infoWindow.setContent(
@@ -50,11 +50,11 @@ function handleLocationError(
   infoWindow.open(map);
 }
 
-declare global {
-  interface Window {
-    initMap: () => void;
-  }
-}
+// declare global {
+//   interface Window {
+//     initMap: () => void;
+//   }
+// }
 window.initMap = initMap;
 export {};
 
